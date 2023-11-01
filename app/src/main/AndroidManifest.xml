@@ -13,6 +13,9 @@
         android:theme="@style/Theme.QuizDroid"
         tools:targetApi="31">
         <activity
+            android:name=".AnswerActivity"
+            android:parentActivityName=".QuestionActivity" />
+        <activity
             android:name=".QuestionActivity"
             android:parentActivityName=".TopicOverviewActivity" />
         <activity
