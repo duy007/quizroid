@@ -28,13 +28,6 @@ class AnswerActivity : AppCompatActivity()  {
         const val USER_ANSWER = "user_answer"
         const val LENGTH = "length"
         const val CORRECT = "correct"
-        var CURR_CORRECT = 0
-        var CURR_POSITION = 0
-        var correct_value = false
-        var TOTAL = 0
-        var type = "marvel"
-        var correctAnswer = "n/a"
-        var userAnswer = "n/a"
         private var prevState = AnswerState()
         private var currState = AnswerState()
         fun revertState() {
