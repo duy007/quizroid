@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">QuizDroid</string>
+    <string name="select_topic">Select Topic</string>
+    <string-array name="topic">
+        <item>Marvel</item>
+        <item>Math</item>
+        <item>Physics</item>
+    </string-array>
+    <string-array name="topic_description">
+        <item>Trivia about the Marvel Comic Universe</item>
+        <item>Trivia about some Math fun facts!</item>
+        <item>Trivia about some Physics fun facts!</item>
+    </string-array>
+    <string name="total_questions">
+        Total Questions: %1$d / %1$d
+    </string>
+    <string name="begin">Begin</string>
+    <string name="submit">Submit</string>
+    <string-array name="marvel_questions">
+        <item>Who is Spider-Ham?</item>
+        <item>Where is Captain America from?</item>
+        <item>Who cries, “I’m Mary Poppins, y’all!” in Guardians of the Galaxy Vol. 2?</item>
+    </string-array>
+    <string-array name="marvel_correct_answer">
+        <item>Peter Porker</item>
+        <item>Brooklyn</item>
+        <item>Yondu</item>
+    </string-array>
+    <string-array name="marvel_false_answer_1">
+        <item>Peter Parker</item>
+        <item>Miles Morales</item>
+    </string-array>
+    <string-array name="marvel_false_answer_2">
+        <item>Seattle</item>
+        <item>NYC</item>
+    </string-array>
+    <string-array name="marvel_false_answer_3">
+        <item>Marry Poppins</item>
+        <item>Groot</item>
+    </string-array>
+    <string-array name="math_questions">
+        <item>What number doesn’t have its own Roman numeral?</item>
+        <item>How many lives are cats said to have?</item>
+        <item>How many cupcakes are in a baker’s dozen?</item>
+    </string-array>
+    <string-array name="math_correct_answer">
+        <item>Zero</item>
+        <item>Nine</item>
+        <item>Thirteen</item>
+    </string-array>
+    <string-array name="math_false_answer_1">
+        <item>Ten</item>
+        <item>One Thousands</item>
+    </string-array>
+    <string-array name="math_false_answer_2">
+        <item>13</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="math_false_answer_3">
+        <item>11</item>
+        <item>14</item>
+    </string-array>
+    <string-array name="physics_questions">
+        <item>What does UV stands for?</item>
+        <item>Mass divided by volume is the formula for what?</item>
+        <item>What are the three primary colors of light?</item>
+    </string-array>
+    <string-array name="physics_correct_answer">
+        <item>Ultra Violet</item>
+        <item>Density</item>
+        <item>Red, Blue, Green</item>
+    </string-array>
+    <string-array name="physics_false_answer_1">
+        <item>Ultra Volt</item>
+        <item>Utility Vibration</item>
+    </string-array>
+    <string-array name="physics_false_answer_2">
+        <item>Kilogram</item>
+        <item>Kelvin</item>
+    </string-array>
+    <string-array name="physics_false_answer_3">
+        <item>Red, Yellow, Green</item>
+        <item>Red, Blue, Yellow</item>
+    </string-array>
+</resources>

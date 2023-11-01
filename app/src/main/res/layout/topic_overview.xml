@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".TopicOverviewActivity"
+    >
+    <TextView
+        android:id="@+id/topic_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:layout_margin="16dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"/>
+    <TextView
+        android:id="@+id/total_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topic_description"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/begin_button"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:cornerRadius="0dp"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/begin"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
