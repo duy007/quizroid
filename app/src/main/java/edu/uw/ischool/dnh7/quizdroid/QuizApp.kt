@@ -9,6 +9,7 @@ class QuizApp : Application() {
 
     private lateinit var topicRepository: TopicRepository
     override fun onCreate() {
+        Log.i("Application", "QuizApp Init")
         topicRepository = TopicRepositoryImpl(this)
         super.onCreate()
     }

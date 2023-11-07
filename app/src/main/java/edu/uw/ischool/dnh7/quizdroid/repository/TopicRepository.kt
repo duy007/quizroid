@@ -8,4 +8,6 @@ interface TopicRepository {
     fun loadTopics(): List<Topic>
 
     fun loadQuestions(type: String): List<Question>
+
+    fun updateQuestion(index: Int, question: Question) : List<Question>
 }

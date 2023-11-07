@@ -1,5 +1,6 @@
 package edu.uw.ischool.dnh7.quizdroid
 
+import edu.uw.ischool.dnh7.quizdroid.repository.implement.TopicRepositoryImpl
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,7 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
+//        val repository = TopicRepositoryImpl()
         assertEquals(4, 2 + 2)
     }
 }

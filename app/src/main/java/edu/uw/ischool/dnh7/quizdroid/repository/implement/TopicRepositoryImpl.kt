@@ -7,14 +7,19 @@ import edu.uw.ischool.dnh7.quizdroid.model.Topic
 import edu.uw.ischool.dnh7.quizdroid.repository.TopicRepository
 
 class TopicRepositoryImpl (private val context: Context) : TopicRepository {
+
+    private lateinit var topicList: List<Topic>
+    private lateinit var questionList: List<Question>
+
     override fun loadTopics(): List<Topic> {
         val topics = context.resources.getStringArray(R.array.topic)
         val topicDescriptionShort = context.resources.getStringArray(R.array.topic_description_short)
         val topicDescriptionLong = context.resources.getStringArray(R.array.topic_description_long)
 
-        return topics.mapIndexed { index, topic ->
+         topicList = topics.mapIndexed { index, topic ->
             Topic(topic, topicDescriptionShort[index], topicDescriptionLong[index],3)
         }
+        return topicList
     }
     override fun loadQuestions(type: String): List<Question> {
         val resourceArray = mutableListOf<Array<String>>()
@@ -45,12 +50,17 @@ class TopicRepositoryImpl (private val context: Context) : TopicRepository {
         val questions = resourceArray[0]
         val correctAnswer = resourceArray[1]
         val answers = listOf(resourceArray[2].toList(), resourceArray[3].toList(), resourceArray[4].toList())
-        return questions.mapIndexed { index, questionString ->
+        questionList = questions.mapIndexed { index, questionString ->
             Question(
                 question = questionString,
                 correctAnswer = correctAnswer[index].toInt(),
                 answers = answers[index]
             )
         }
+        return questionList
+    }
+
+    override fun updateQuestion(index: Int, question: Question): List<Question> {
+        return questionList
     }
 }
