@@ -1,19 +1,22 @@
-package edu.uw.ischool.dnh7.quizdroid.data
+package edu.uw.ischool.dnh7.quizdroid.repository.implement
 
 import android.content.Context
 import edu.uw.ischool.dnh7.quizdroid.R
 import edu.uw.ischool.dnh7.quizdroid.model.Question
 import edu.uw.ischool.dnh7.quizdroid.model.Topic
+import edu.uw.ischool.dnh7.quizdroid.repository.TopicRepository
 
-class DataSource (val context: Context) {
-    fun loadTopics(): List<Topic> {
+class TopicRepositoryImpl (private val context: Context) : TopicRepository {
+    override fun loadTopics(): List<Topic> {
         val topics = context.resources.getStringArray(R.array.topic)
-        val topicDescription = context.resources.getStringArray(R.array.topic_description)
+        val topicDescriptionShort = context.resources.getStringArray(R.array.topic_description_short)
+        val topicDescriptionLong = context.resources.getStringArray(R.array.topic_description_long)
+
         return topics.mapIndexed { index, topic ->
-            Topic(topic, topicDescription[index], 3)
+            Topic(topic, topicDescriptionShort[index], topicDescriptionLong[index],3)
         }
     }
-    fun loadQuestions(type: String): List<Question> {
+    override fun loadQuestions(type: String): List<Question> {
         val resourceArray = mutableListOf<Array<String>>()
         when (type) {
             "math" ->

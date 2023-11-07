@@ -6,10 +6,18 @@
         <item>Math</item>
         <item>Physics</item>
     </string-array>
-    <string-array name="topic_description">
+    <string-array name="topic_description_short">
         <item>Trivia about the Marvel Comic Universe</item>
         <item>Trivia about some Math fun facts!</item>
         <item>Trivia about some Physics fun facts!</item>
+    </string-array>
+    <string-array name="topic_description_long">
+        <item>Test your knowledge about the Marvel Comic Universe. Answer all the questions to prove
+        your status as a super fan.</item>
+        <item>Test your knowledge about Mathematics. Answer all the questions to prove
+        your status as a Math genius.</item>
+        <item>Test your knowledge about Physics. Answer all the questions to prove
+        your status as a Physics genius.</item>
     </string-array>
     <string name="total_questions">
         Total Questions: %1$d / %1$d
@@ -33,14 +41,17 @@
     <string-array name="marvel_false_answer_1">
         <item>Peter Parker</item>
         <item>Miles Morales</item>
+        <item>Gwen Stacy</item>
     </string-array>
     <string-array name="marvel_false_answer_2">
         <item>Seattle</item>
         <item>NYC</item>
+        <item>L.A.</item>
     </string-array>
     <string-array name="marvel_false_answer_3">
         <item>Marry Poppins</item>
         <item>Groot</item>
+        <item>Starlord</item>
     </string-array>
     <string-array name="math_questions">
         <item>What number doesn’t have its own Roman numeral?</item>
@@ -48,21 +59,24 @@
         <item>How many cupcakes are in a baker’s dozen?</item>
     </string-array>
     <string-array name="math_correct_answer">
-        <item>Zero</item>
-        <item>Nine</item>
-        <item>Thirteen</item>
+        <item>0</item>
+        <item>9</item>
+        <item>13</item>
     </string-array>
     <string-array name="math_false_answer_1">
-        <item>Ten</item>
-        <item>One Thousands</item>
+        <item>10</item>
+        <item>1000</item>
+        <item>10000</item>
     </string-array>
     <string-array name="math_false_answer_2">
         <item>13</item>
         <item>7</item>
+        <item>5</item>
     </string-array>
     <string-array name="math_false_answer_3">
         <item>11</item>
         <item>14</item>
+        <item>16</item>
     </string-array>
     <string-array name="physics_questions">
         <item>What does UV stands for?</item>
@@ -77,13 +91,16 @@
     <string-array name="physics_false_answer_1">
         <item>Ultra Volt</item>
         <item>Utility Vibration</item>
+        <item>Utility Verb</item>
     </string-array>
     <string-array name="physics_false_answer_2">
         <item>Kilogram</item>
         <item>Kelvin</item>
+        <item>Degree</item>
     </string-array>
     <string-array name="physics_false_answer_3">
         <item>Red, Yellow, Green</item>
         <item>Red, Blue, Yellow</item>
+        <item>Red, Blue, Purple</item>
     </string-array>
 </resources>

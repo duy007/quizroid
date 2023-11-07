@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import edu.uw.ischool.dnh7.quizdroid.data.DataSource
 import edu.uw.ischool.dnh7.quizdroid.databinding.AnswerBinding
 
 data class AnswerState(
@@ -44,7 +43,6 @@ class AnswerActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         binding = AnswerBinding.inflate(layoutInflater)
         prevState = currState.copy()
-        Log.d("AnswerState", "PREV: " + prevState.toString())
         setContentView(binding.root)
         currState.correctValue = intent?.extras?.getString(CORRECT).toString().toBooleanStrict()
         currState.total = intent?.extras?.getString(LENGTH).toString().toInt()
@@ -53,6 +51,7 @@ class AnswerActivity : AppCompatActivity()  {
         currState.userAnswer = intent?.extras?.getString(USER_ANSWER).toString()
         currState.currPosition = intent?.extras?.getString(POSITION).toString().toInt()
         if (currState.correctValue) currState.currCorrect+=1
+        Log.d("AnswerState", "PREV: " + prevState.toString())
         Log.d("AnswerState", "CURR: " + currState.toString())
         binding.correctAnswer.text = currState.correctAnswer
         binding.userAnswer.text =  currState.userAnswer

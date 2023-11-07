@@ -9,9 +9,6 @@ import android.widget.RadioGroup
 import android.widget.RadioGroup.LayoutParams
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginBottom
-import androidx.core.view.setMargins
-import edu.uw.ischool.dnh7.quizdroid.data.DataSource
 import edu.uw.ischool.dnh7.quizdroid.databinding.QuestionBinding
 import kotlin.random.Random
 
@@ -32,7 +29,7 @@ class QuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = QuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val data = DataSource(this).loadQuestions(intent?.extras?.getString(TYPE).toString().lowercase())
+        val data = (this.application as QuizApp).getTopicRepository().loadQuestions(intent?.extras?.getString(TYPE).toString().lowercase())
         currState.position = intent?.extras?.getString(POSITION).toString().toInt()
         currState.type = this.intent?.extras?.getString(TYPE).toString()
         binding.questionTitle.text = data[currState.position].question

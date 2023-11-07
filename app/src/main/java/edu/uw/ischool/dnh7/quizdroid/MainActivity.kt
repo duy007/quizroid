@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.uw.ischool.dnh7.quizdroid.adapters.TopicAdapter
-import edu.uw.ischool.dnh7.quizdroid.data.DataSource
 import edu.uw.ischool.dnh7.quizdroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         topicRecyclerView = binding.topicRecyclerView
         topicRecyclerView.layoutManager = LinearLayoutManager(this)
-        topicRecyclerView.adapter = TopicAdapter(this, DataSource(this).loadTopics())
+        topicRecyclerView.adapter = TopicAdapter(this,(this.application as QuizApp).getTopicRepository().loadTopics())
     }
 }

@@ -3,10 +3,6 @@ package edu.uw.ischool.dnh7.quizdroid
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import edu.uw.ischool.dnh7.quizdroid.adapters.TopicAdapter
-import edu.uw.ischool.dnh7.quizdroid.data.DataSource
 import edu.uw.ischool.dnh7.quizdroid.databinding.TopicOverviewBinding
 
 class TopicOverviewActivity : AppCompatActivity() {
@@ -23,7 +19,7 @@ class TopicOverviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = TopicOverviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.topicDescription.text = intent?.extras?.getString(DESCRIPTION).toString()
+        binding.topicDescriptionLong.text = intent?.extras?.getString(DESCRIPTION).toString()
         binding.totalQuestions.text = getString(R.string.total_questions,
             intent?.extras?.getString(TOTAL_QUESTIONS)?.toInt() ?: 0
         )
