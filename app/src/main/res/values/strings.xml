@@ -34,11 +34,12 @@
         <item>Who cries, “I’m Mary Poppins, y’all!” in Guardians of the Galaxy Vol. 2?</item>
     </string-array>
     <string-array name="marvel_correct_answer">
-        <item>Peter Porker</item>
-        <item>Brooklyn</item>
-        <item>Yondu</item>
+        <item>0</item>
+        <item>3</item>
+        <item>1</item>
     </string-array>
     <string-array name="marvel_false_answer_1">
+        <item>Peter Porker</item>
         <item>Peter Parker</item>
         <item>Miles Morales</item>
         <item>Gwen Stacy</item>
@@ -47,9 +48,11 @@
         <item>Seattle</item>
         <item>NYC</item>
         <item>L.A.</item>
+        <item>Brooklyn</item>
     </string-array>
     <string-array name="marvel_false_answer_3">
         <item>Marry Poppins</item>
+        <item>Yondu</item>
         <item>Groot</item>
         <item>Starlord</item>
     </string-array>
@@ -60,10 +63,11 @@
     </string-array>
     <string-array name="math_correct_answer">
         <item>0</item>
-        <item>9</item>
-        <item>13</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
     <string-array name="math_false_answer_1">
+        <item>0</item>
         <item>10</item>
         <item>1000</item>
         <item>10000</item>
@@ -71,12 +75,14 @@
     <string-array name="math_false_answer_2">
         <item>13</item>
         <item>7</item>
+        <item>9</item>
         <item>5</item>
     </string-array>
     <string-array name="math_false_answer_3">
         <item>11</item>
         <item>14</item>
         <item>16</item>
+        <item>13</item>
     </string-array>
     <string-array name="physics_questions">
         <item>What does UV stands for?</item>
@@ -84,22 +90,25 @@
         <item>What are the three primary colors of light?</item>
     </string-array>
     <string-array name="physics_correct_answer">
-        <item>Ultra Violet</item>
-        <item>Density</item>
-        <item>Red, Blue, Green</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
     </string-array>
     <string-array name="physics_false_answer_1">
         <item>Ultra Volt</item>
         <item>Utility Vibration</item>
+        <item>Ultra Violet</item>
         <item>Utility Verb</item>
     </string-array>
     <string-array name="physics_false_answer_2">
         <item>Kilogram</item>
         <item>Kelvin</item>
         <item>Degree</item>
+        <item>Density</item>
     </string-array>
     <string-array name="physics_false_answer_3">
         <item>Red, Yellow, Green</item>
+        <item>Red, Blue, Green</item>
         <item>Red, Blue, Yellow</item>
         <item>Red, Blue, Purple</item>
     </string-array>

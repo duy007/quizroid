@@ -14,8 +14,8 @@ data class AnswerState(
     var correctValue: Boolean = false,
     var total: Int = 0,
     var type: String = "marvel",
-    var correctAnswer: String = "n/a",
-    var userAnswer: String = "n/a"
+    var correctAnswer: Int = 0,
+    var userAnswer: Int = 0
 )
 class AnswerActivity : AppCompatActivity()  {
 
@@ -47,14 +47,16 @@ class AnswerActivity : AppCompatActivity()  {
         currState.correctValue = intent?.extras?.getString(CORRECT).toString().toBooleanStrict()
         currState.total = intent?.extras?.getString(LENGTH).toString().toInt()
         currState.type = intent?.extras?.getString(TYPE).toString()
-        currState.correctAnswer = intent?.extras?.getString(CORRECT_ANSWER).toString()
-        currState.userAnswer = intent?.extras?.getString(USER_ANSWER).toString()
+        currState.correctAnswer = intent?.extras?.getString(CORRECT_ANSWER).toString().toInt()
+        currState.userAnswer = intent?.extras?.getString(USER_ANSWER).toString().toInt()
         currState.currPosition = intent?.extras?.getString(POSITION).toString().toInt()
         if (currState.correctValue) currState.currCorrect+=1
         Log.d("AnswerState", "PREV: " + prevState.toString())
         Log.d("AnswerState", "CURR: " + currState.toString())
-        binding.correctAnswer.text = currState.correctAnswer
-        binding.userAnswer.text =  currState.userAnswer
+        val data = (this.application as QuizApp).getTopicRepository().loadQuestions(intent?.extras?.getString(TYPE).toString().lowercase())
+
+        binding.correctAnswer.text = data[currState.currPosition].answers[currState.correctAnswer]
+        binding.userAnswer.text =  data[currState.currPosition].answers[currState.userAnswer]
         binding.answerResult.text = getString(R.string.you_have_1_d_out_of_2_d_correct, currState.currCorrect, currState.total)
         binding.nextButton.setOnClickListener {
             val intent = Intent(this, QuestionActivity::class.java)

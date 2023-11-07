@@ -15,7 +15,7 @@ import kotlin.random.Random
 data class QuestionState(
     var type: String = "marvel",
     var position: Int = 0,
-    var currentAnswer: String = ""
+    var currentAnswer: Int = 0
 )
 class QuestionActivity : AppCompatActivity() {
     companion object {
@@ -34,8 +34,7 @@ class QuestionActivity : AppCompatActivity() {
         currState.type = this.intent?.extras?.getString(TYPE).toString()
         binding.questionTitle.text = data[currState.position].question
         binding.submitButton.isEnabled = false
-        val answers = data[currState.position].falseAnswer.toMutableList()
-        answers.add(Random.nextInt(0, data[currState.position].falseAnswer.size),data[currState.position].correctAnswer)
+        val answers = data[currState.position].answers
 
         val layoutParam = RadioGroup.LayoutParams(
             LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT
@@ -50,9 +49,9 @@ class QuestionActivity : AppCompatActivity() {
             btn.setPadding(32, 32, 32,32)
             btn.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    currState.currentAnswer = answer
+                    currState.currentAnswer = index
                     binding.submitButton.isEnabled = true
-                    Log.v("currentAnswer", currState.currentAnswer )
+                    Log.v("currentAnswer", currState.currentAnswer.toString() )
                 }
             }
             binding.answerRadioGroup.addView(btn)
@@ -61,8 +60,8 @@ class QuestionActivity : AppCompatActivity() {
             val intent = Intent(this, AnswerActivity::class.java)
             intent.putExtra(AnswerActivity.TYPE, currState.type)
             intent.putExtra(AnswerActivity.POSITION, currState.position.toString())
-            intent.putExtra(AnswerActivity.CORRECT_ANSWER, data[currState.position].correctAnswer)
-            intent.putExtra(AnswerActivity.USER_ANSWER, currState.currentAnswer)
+            intent.putExtra(AnswerActivity.CORRECT_ANSWER, data[currState.position].correctAnswer.toString())
+            intent.putExtra(AnswerActivity.USER_ANSWER, currState.currentAnswer.toString())
             intent.putExtra(AnswerActivity.LENGTH, data.size.toString())
             intent.putExtra(AnswerActivity.CORRECT, isCorrect(data[currState.position].correctAnswer, currState.currentAnswer).toString())
             this.startActivity(intent)
@@ -86,7 +85,7 @@ class QuestionActivity : AppCompatActivity() {
             }
         }
     }
-    private fun isCorrect(correctAnswer: String, userAnswer: String) : Boolean {
+    private fun isCorrect(correctAnswer: Int, userAnswer: Int) : Boolean {
         return correctAnswer == userAnswer
     }
 }

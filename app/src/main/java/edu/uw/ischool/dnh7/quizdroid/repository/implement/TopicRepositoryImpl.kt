@@ -43,13 +43,13 @@ class TopicRepositoryImpl (private val context: Context) : TopicRepository {
             }
         }
         val questions = resourceArray[0]
-        val correctAnswers = resourceArray[1]
-        val falseAnswers = listOf(resourceArray[2].toList(), resourceArray[3].toList(), resourceArray[4].toList())
+        val correctAnswer = resourceArray[1]
+        val answers = listOf(resourceArray[2].toList(), resourceArray[3].toList(), resourceArray[4].toList())
         return questions.mapIndexed { index, questionString ->
             Question(
                 question = questionString,
-                correctAnswer = correctAnswers[index],
-                falseAnswer = falseAnswers[index]
+                correctAnswer = correctAnswer[index].toInt(),
+                answers = answers[index]
             )
         }
     }
