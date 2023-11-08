@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
@@ -19,6 +20,7 @@ class TopicAdapter (
 ) : RecyclerView.Adapter<TopicAdapter.TopicViewHolder>() {
 
     class TopicViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val imageView = view.findViewById<ImageView>(R.id.topic_image)
         val card = view.findViewById<MaterialCardView>(R.id.topic_overview_wrapper)
         val title = view.findViewById<TextView>(R.id.topic_title)
         val short_desc = view.findViewById<TextView>(R.id.topic_description_short)
@@ -40,11 +42,13 @@ class TopicAdapter (
         val topicShortDesc = data[position].short_description
         holder.title.text = topic
         holder.short_desc.text = topicShortDesc
+        holder.imageView.setImageResource(data[position].icon)
 
         holder.card.setOnClickListener {
             holder.view.context
             val intent = Intent(holder.view.context, TopicOverviewActivity::class.java)
             intent.putExtra(TopicOverviewActivity.TYPE, topic)
+            intent.putExtra(TopicOverviewActivity.ICON, data[position].icon.toString())
             intent.putExtra(TopicOverviewActivity.DESCRIPTION, data[position].long_description)
             intent.putExtra(TopicOverviewActivity.TOTAL_QUESTIONS, data[position].questionCount.toString())
             context.startActivity(intent)

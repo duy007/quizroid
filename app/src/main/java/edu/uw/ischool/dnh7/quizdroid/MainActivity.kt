@@ -19,6 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         topicRecyclerView = binding.topicRecyclerView
         topicRecyclerView.layoutManager = LinearLayoutManager(this)
-        topicRecyclerView.adapter = TopicAdapter(this,(this.application as QuizApp).getTopicRepository().loadTopics())
+        topicRecyclerView.adapter = TopicAdapter(this,(this.application as QuizApp).getTopicRepository().loadTopics(this))
     }
 }

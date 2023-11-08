@@ -53,7 +53,7 @@ class AnswerActivity : AppCompatActivity()  {
         if (currState.correctValue) currState.currCorrect+=1
         Log.d("AnswerState", "PREV: " + prevState.toString())
         Log.d("AnswerState", "CURR: " + currState.toString())
-        val data = (this.application as QuizApp).getTopicRepository().loadQuestions(intent?.extras?.getString(TYPE).toString().lowercase())
+        val data = (this.application as QuizApp).getTopicRepository().loadQuestions(this, intent?.extras?.getString(TYPE).toString().lowercase())
 
         binding.correctAnswer.text = data[currState.currPosition].answers[currState.correctAnswer]
         binding.userAnswer.text =  data[currState.currPosition].answers[currState.userAnswer]

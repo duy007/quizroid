@@ -6,22 +6,27 @@ import edu.uw.ischool.dnh7.quizdroid.model.Question
 import edu.uw.ischool.dnh7.quizdroid.model.Topic
 import edu.uw.ischool.dnh7.quizdroid.repository.TopicRepository
 
-class TopicRepositoryImpl (private val context: Context) : TopicRepository {
+class TopicRepositoryImpl () : TopicRepository {
 
     private lateinit var topicList: List<Topic>
     private lateinit var questionList: List<Question>
+    private lateinit var type: String
 
-    override fun loadTopics(): List<Topic> {
+    override fun loadTopics(context: Context): List<Topic> {
+        if (this::topicList.isInitialized) return topicList
         val topics = context.resources.getStringArray(R.array.topic)
         val topicDescriptionShort = context.resources.getStringArray(R.array.topic_description_short)
         val topicDescriptionLong = context.resources.getStringArray(R.array.topic_description_long)
 
          topicList = topics.mapIndexed { index, topic ->
-            Topic(topic, topicDescriptionShort[index], topicDescriptionLong[index],3)
+            Topic(
+                type = topic, short_description = topicDescriptionShort[index],
+                long_description = topicDescriptionLong[index], questionCount = 3)
         }
         return topicList
     }
-    override fun loadQuestions(type: String): List<Question> {
+    override fun loadQuestions(context: Context, type: String): List<Question> {
+        if (this::questionList.isInitialized && this.type == type) return questionList
         val resourceArray = mutableListOf<Array<String>>()
         when (type) {
             "math" ->
@@ -47,6 +52,7 @@ class TopicRepositoryImpl (private val context: Context) : TopicRepository {
                 resourceArray.add(context.resources.getStringArray(R.array.physics_false_answer_3))
             }
         }
+        this.type = type
         val questions = resourceArray[0]
         val correctAnswer = resourceArray[1]
         val answers = listOf(resourceArray[2].toList(), resourceArray[3].toList(), resourceArray[4].toList())
@@ -61,6 +67,43 @@ class TopicRepositoryImpl (private val context: Context) : TopicRepository {
     }
 
     override fun updateQuestion(index: Int, question: Question): List<Question> {
+        var tmp = questionList.toMutableList()
+        tmp[index] = question
+        questionList = tmp.toList()
         return questionList
     }
+
+    override fun addQuestion(question: Question): List<Question> {
+        var tmp = questionList.toMutableList()
+        tmp.add(question)
+        questionList = tmp.toList()
+        return questionList
+    }
+
+    override fun addTopic(topic: Topic): List<Topic> {
+        var tmp = topicList.toMutableList()
+        tmp.add(topic)
+        topicList = tmp.toList()
+        return topicList
+    }
+
+    override fun getTopics(): List<Topic> {
+        return topicList
+    }
+
+    override fun getQuestions(): List<Question> {
+        return questionList
+    }
+
+    override fun loadEmptyQuestion(): List<Question> {
+        questionList = listOf<Question> ()
+        return questionList
+    }
+
+    override fun loadEmptyTopics(): List<Topic> {
+        topicList = listOf<Topic> ()
+        return topicList
+    }
+
+
 }
