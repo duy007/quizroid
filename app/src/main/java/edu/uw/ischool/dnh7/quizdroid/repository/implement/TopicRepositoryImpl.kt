@@ -5,63 +5,86 @@ import edu.uw.ischool.dnh7.quizdroid.R
 import edu.uw.ischool.dnh7.quizdroid.model.Question
 import edu.uw.ischool.dnh7.quizdroid.model.Topic
 import edu.uw.ischool.dnh7.quizdroid.repository.TopicRepository
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.File
+import java.io.FileReader
 
 class TopicRepositoryImpl () : TopicRepository {
 
     private lateinit var topicList: List<Topic>
     private lateinit var questionList: List<Question>
+    private lateinit var jsonMap: MutableMap<String, JSONObject>
     private lateinit var type: String
 
     override fun loadTopics(context: Context): List<Topic> {
         if (this::topicList.isInitialized) return topicList
-        val topics = context.resources.getStringArray(R.array.topic)
-        val topicDescriptionShort = context.resources.getStringArray(R.array.topic_description_short)
-        val topicDescriptionLong = context.resources.getStringArray(R.array.topic_description_long)
+        val topics = mutableListOf<String>()
+        val desc = mutableListOf<String>()
+        val questionCount = mutableListOf<Int>()
+        val file = File(context.filesDir, "./questions.json")
+        val inputStream = FileReader(file)
+        var data: JSONArray
+        inputStream.use {
+            data = JSONArray(it.readText())
+        }
+        inputStream.close()
+        for (index in 0 until data.length()) {
+            val value = data.getJSONObject(index)
+            topics.add(value.getString("title"))
+            desc.add(value.getString("desc"))
+            questionCount.add(value.getJSONArray("questions").length())
+        }
 
          topicList = topics.mapIndexed { index, topic ->
             Topic(
-                type = topic, short_description = topicDescriptionShort[index],
-                long_description = topicDescriptionLong[index], questionCount = 3)
+                type = topic, short_description = desc[index],
+                long_description = desc[index], questionCount = questionCount[index])
         }
         return topicList
     }
     override fun loadQuestions(context: Context, type: String): List<Question> {
         if (this::questionList.isInitialized && this.type == type) return questionList
-        val resourceArray = mutableListOf<Array<String>>()
-        when (type) {
-            "math" ->
-            {
-                resourceArray.add(context.resources.getStringArray(R.array.math_questions))
-                resourceArray.add(context.resources.getStringArray(R.array.math_correct_answer))
-                resourceArray.add(context.resources.getStringArray(R.array.math_false_answer_1))
-                resourceArray.add(context.resources.getStringArray(R.array.math_false_answer_2))
-                resourceArray.add(context.resources.getStringArray(R.array.math_false_answer_3))
-            }
-            "marvel" -> {
-                resourceArray.add(context.resources.getStringArray(R.array.marvel_questions))
-                resourceArray.add(context.resources.getStringArray(R.array.marvel_correct_answer))
-                resourceArray.add(context.resources.getStringArray(R.array.marvel_false_answer_1))
-                resourceArray.add(context.resources.getStringArray(R.array.marvel_false_answer_2))
-                resourceArray.add(context.resources.getStringArray(R.array.marvel_false_answer_3))
-            }
-            else -> {
-                resourceArray.add(context.resources.getStringArray(R.array.physics_questions))
-                resourceArray.add(context.resources.getStringArray(R.array.physics_correct_answer))
-                resourceArray.add(context.resources.getStringArray(R.array.physics_false_answer_1))
-                resourceArray.add(context.resources.getStringArray(R.array.physics_false_answer_2))
-                resourceArray.add(context.resources.getStringArray(R.array.physics_false_answer_3))
-            }
+        val file = File(context.filesDir, "./questions.json")
+        // load data from file
+        val inputStream = FileReader(file)
+        var data: JSONArray
+        inputStream.use {
+            data = JSONArray(it.readText())
         }
-        this.type = type
-        val questions = resourceArray[0]
-        val correctAnswer = resourceArray[1]
-        val answers = listOf(resourceArray[2].toList(), resourceArray[3].toList(), resourceArray[4].toList())
-        questionList = questions.mapIndexed { index, questionString ->
-            Question(
-                question = questionString,
-                correctAnswer = correctAnswer[index].toInt(),
-                answers = answers[index]
-            )
+        inputStream.close()
+        // loop through JSONArray from file
+        for (index in 0 until data.length()) {
+            val value = data.getJSONObject(index)
+            // check if type are question type is the same
+            if (value.getString("title") == type) {
+                this.type = type
+                // load the question list, and loop through it
+                val questionArray = value.getJSONArray("questions")
+                val tmpList = mutableListOf<Question>()
+                for (index in 0 until questionArray.length()) {
+                    // generate Json object
+                    val questionObj = questionArray.getJSONObject(index)
+                    // generate answerArray for a question
+                    val answerArray = questionObj.getJSONArray("answers")
+                    val answerList = mutableListOf<String>()
+                    // generate a list<String> for Question Model
+                    for (index in 0 until answerArray.length()) {
+                        answerList.add(answerArray.getString(index))
+                    }
+                    // correctAnswer - 1 b/c of JSON is 1-based index, app is not
+                    //
+                    tmpList.add(
+                        Question(
+                            question = questionObj.getString("text"),
+                            correctAnswer = questionObj.getInt("answer") - 1,
+                            answers = answerList.toList()
+                        )
+                    )
+                }
+                // set tmpList to questionList
+                questionList = tmpList.toList()
+            }
         }
         return questionList
     }
@@ -104,6 +127,4 @@ class TopicRepositoryImpl () : TopicRepository {
         topicList = listOf<Topic> ()
         return topicList
     }
-
-
 }

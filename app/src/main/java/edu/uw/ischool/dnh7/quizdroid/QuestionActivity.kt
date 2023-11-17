@@ -29,8 +29,8 @@ class QuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = QuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val data = (this.application as QuizApp).getTopicRepository().loadQuestions(this, intent?.extras?.getString(TYPE).toString().lowercase())
-        Log.d("type", intent?.extras?.getString(TYPE).toString().lowercase())
+        val data = (this.application as QuizApp).getTopicRepository().loadQuestions(this, intent?.extras?.getString(TYPE).toString())
+        Log.d("type", intent?.extras?.getString(TYPE).toString())
         currState.position = intent?.extras?.getString(POSITION).toString().toInt()
         currState.type = this.intent?.extras?.getString(TYPE).toString()
         binding.questionTitle.text = data[currState.position].question
