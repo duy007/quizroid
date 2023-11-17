@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PreferenceActivity"
+    android:layout_margin="32dp">
+    <TextView
+        android:id="@+id/preference_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preferences"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+<TextView
+    android:id="@+id/url_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="URL"
+    android:layout_marginTop="32dp"
+    app:layout_constraintTop_toBottomOf="@id/preference_name"
+    app:layout_constraintStart_toStartOf="parent"
+    android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+    <EditText
+        android:id="@+id/url_input"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:text="test"
+        app:layout_constraintStart_toStartOf="@id/url_label"
+        app:layout_constraintTop_toBottomOf="@id/url_label" />
+    <TextView
+        android:id="@+id/minute_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check for new update (in minute)"
+        app:layout_constraintTop_toBottomOf="@id/url_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+    <EditText
+        android:id="@+id/minute_input"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:text="1"
+        app:layout_constraintStart_toStartOf="@id/minute_label"
+        app:layout_constraintTop_toBottomOf="@id/minute_label" />
+    <TextView
+        android:id="@+id/warning_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Changes would be apply when the next download starts"
+        app:layout_constraintTop_toBottomOf="@id/minute_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/colorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/preference_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/warning_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

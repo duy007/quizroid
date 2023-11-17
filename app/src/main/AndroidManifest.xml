@@ -27,6 +27,8 @@
             android:name=".TopicOverviewActivity"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".PreferenceActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

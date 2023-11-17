@@ -28,6 +28,7 @@
     <string name="you_have_1_d_out_of_2_d_correct">You have %1$d out of %2$d correct</string>
     <string name="your_answer">Your Answer</string>
     <string name="correct_answer">Correct Answer</string>
+    <string name="action_settings">Setting\n</string>
     <string-array name="marvel_questions">
         <item>Who is Spider-Ham?</item>
         <item>Where is Captain America from?</item>
